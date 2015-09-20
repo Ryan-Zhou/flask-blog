@@ -1,14 +1,25 @@
 <html>
     <head>
+        <script type="text/javascript">
+          function startTime(){
+            var today = new Date();
+            var h=today.getHours();
+            var m=today.getMinutes();
+            var s=today.getSeconds();
+            document.getElementById('clock').innerHTML = h+":"+m+":"+s;
+            var t = setTimeout(function(){startTime()},500);
+          }
+        </script>
         {% if title %}
         <title>{{ title }} - microblog </title>
         {% else %}
         <title>Welcome to microblog</title>
         {% endif %}
     </head>
-    <body>
+    <body onload="startTime()">
         <div>Microblog: <a href="/index">Home</a>
           <a href="/login">Login</a>
+          <div id="clock"></div>
         </div>
         <hr>
         {% with messages = get_flashed_messages() %}
